@@ -30,7 +30,7 @@ class PriceController extends Controller
             $prices['bitstamp'] = self::getBitstamp();
             $prices['btce'] = self::getBtce();
 
-            Cache::put('btc_prices', $prices, 1);
+            Cache::forever('btc_prices', $prices);
         }
 
         if( Request::ajax() )
