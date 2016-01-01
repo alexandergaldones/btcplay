@@ -13,14 +13,7 @@
                  <a href="index.html">Home</a> 
                  <i class="icon-angle-right"></i>
               </li>
-              <li><a href="#">Dashboard</a></li>
-              <li class="pull-right">
-                 <div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
-                    <i class="icon-calendar"></i>
-                    <span></span>
-                    <i class="icon-angle-down"></i>
-                 </div>
-              </li>
+              <li><a href="#">Dashboard</a></li>              
            </ul>
            <!-- END PAGE TITLE & BREADCRUMB-->
         </div>
