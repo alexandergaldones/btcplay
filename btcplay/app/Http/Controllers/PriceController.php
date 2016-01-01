@@ -14,7 +14,7 @@ class PriceController extends Controller
      * @return Response
      */
     public function showPrices()
-    {        
+    {
         $prices = array();
         if( Cache::has('btc_prices') )
         {            
@@ -106,7 +106,7 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitfinex'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitfinex';
-        $json['last_price'] = !empty($json['last_price']) ? 'USD $' . number_format($json['last_price'], 2) : "Exchange offline :-(";
+        $json['last_price'] = !empty($json['last_price']) ? 'USD $' . number_format($json['last_price'], 2) : "Exchange unreachable :-(";
         return $json;
     }
 
@@ -121,6 +121,7 @@ class PriceController extends Controller
             'price' => $price,
             'exchange' => 'Blockchain.info'
         );
+        
         return $info;
     }
 
@@ -129,14 +130,10 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['coinsph'];
         $json = self::getPriceUri($url);
         $price = $json["quote"]['ask'];
-        $price = 'PHP ' .number_format($price, 2);
+        $json['exchange'] = 'Coins.ph';
+        $json['quote']['ask'] = !empty($price) ? $json["quote"]['currency'] .number_format($price, 2) : "Exchange unreachable :-(";
 
-        $info = array(
-            'price' => $price,
-            'exchange' => 'Coins.ph Exchange'
-        );
-
-        return $info;
+        return $json;
     }
 
     private function getPriceUri($url = '')

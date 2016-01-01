@@ -28,7 +28,7 @@
                   </div>
                   <div class="details">
                      <div class="number coinsph">
-                        {{ $prices['coinsph']['price'] }}
+                        {{ $prices['coinsph']['quote']['ask'] }}
                      </div>
                      <div class="desc">                           
                         Coins.ph Exchange

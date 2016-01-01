@@ -10,7 +10,7 @@ $(function(){
 	    })
 	    .success(function(data){	        
 	        $('.bitfinex').html(data.prices.bitfinex.last_price);
-	        $('.coinsph').html(data.prices.coinsph.price);
+	        $('.coinsph').html(data.prices.coinsph.quote.ask);
 	        $('.blockchaininfo').html(data.prices.blockchaininfo.price);
 	        $('.bitstamp').html(data.prices.bitstamp.price);
 	        $('.btce').html(data.prices.btce.price);
