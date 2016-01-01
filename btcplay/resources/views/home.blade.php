@@ -3,18 +3,18 @@
 	<!-- BEGIN PAGE HEADER-->
      <div class="row">
         <div class="col-md-12">
-           <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-           <h3 class="page-title">
-              Bitcoin Price <small>a quick spot</small>
-           </h3>
+           <!-- BEGIN PAGE TITLE & BREADCRUMB-->           
            <ul class="page-breadcrumb breadcrumb">
               <li>
                  <i class="icon-home"></i>
-                 <a href="index.html">Home</a> 
+                 <a href="/">Home</a> 
                  <i class="icon-angle-right"></i>
               </li>
               <li><a href="#">Dashboard</a></li>              
            </ul>
+           <h3 class="page-title">
+              Bitcoin Global Price <small>latest global events ( {{ date('F d, Y') }} )</small>
+           </h3>
            <!-- END PAGE TITLE & BREADCRUMB-->
         </div>
      </div>

@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0
-Version: 1.5.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
--->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
@@ -31,8 +24,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             <!-- BEGIN USER LOGIN DROPDOWN -->
             <li class="dropdown user">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-               <img alt="" src="img/avatar1_small.jpg"/>
-               <span class="username">Bob Nilson</span>
+               <img alt="" src="img/avatar.png" style="width: 29px; height:29px;"/>
+               <span class="username">Heyyah, Guest!</span>
                <i class="icon-angle-down"></i>
                </a>
                <ul class="dropdown-menu">
@@ -41,7 +34,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                   <li class="divider"></li>
                   <li><a href="javascript:;" id="trigger_fullscreen"><i class="icon-move"></i> Full Screen</a>
                   </li>
-                  <li><a href="#"><i class="icon-key"></i> Log Out</a>
+                  <li><a href="#"><i class="icon-key"></i> Signup</a>
                   </li>
                </ul>
             </li>
