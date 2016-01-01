@@ -16,20 +16,13 @@ class PriceController extends Controller
     public function showPrices()
     {        
         $prices = array();
-
         if( Cache::has('btc_prices') )
         {            
             $prices = Cache::get('btc_prices');
         }
         else 
         {
-            $prices['coinsph'] = self::getCoinsph();
-            $prices['blockchaininfo'] = self::getBlockchainInfo();
-            $prices['bitfinex'] = self::getBitfinex();
-            $prices['bitstamp'] = self::getBitstamp();
-            $prices['btce'] = self::getBtce();
-
-            Cache::put('btc_prices', $prices, 1);
+            $prices = self::getBTCPrices();
         }
 
         if( Request::ajax() )
@@ -40,14 +33,27 @@ class PriceController extends Controller
                 )
             );
         }
+        
+        return view('home',
+            array(
+                'prices' => $prices
+            )
+        );
+        
+    }
 
-        
-            return view('home',
-                array(
-                    'prices' => $prices
-                )
-            );
-        
+    public function getBTCPrices()
+    {
+        $prices = array();
+
+        $prices['coinsph'] = self::getCoinsph();
+        $prices['blockchaininfo'] = self::getBlockchainInfo();
+        $prices['bitfinex'] = self::getBitfinex();
+        $prices['bitstamp'] = self::getBitstamp();
+        $prices['btce'] = self::getBtce();
+
+        Cache::forever('btc_prices',$prices);
+        return $prices;
     }
 
     private function getBitpay()

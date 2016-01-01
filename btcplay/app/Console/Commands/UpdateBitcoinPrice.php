@@ -43,12 +43,14 @@ class UpdateBitcoinPrice extends Command
      */
     public function handle()
     {
-        $this->info("Updating Bitcoin prices...     :        " . date('Y-m-d H:i:s'));
-
-        $btcprice = new PriceController();
-        $btcprice->showPrices();
-        $this->comment('running..\n');    
-            
-        $this->comment('Finished at ' . date('Y-m-d H:i:s'));        
+        $wait = true;
+        while(true)
+        {               
+            $this->info("Updating Bitcoin prices...     :        " . date('Y-m-d H:i:s'));
+            $btcprice = new PriceController();
+            $btcprice->getBTCPrices();                
+            $this->comment('running..\n');
+            $this->comment('Finished at ' . date('Y-m-d H:i:s'));            
+        }
     }
 }
