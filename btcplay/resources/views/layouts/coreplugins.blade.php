@@ -54,7 +54,7 @@
          //Index.initChat();
          //Index.initMiniCharts();
          //Index.initDashboardDaterange();
-         Index.initIntro();
+         //Index.initIntro();
          Tasks.initDashboardWidget();
       });
    </script>
