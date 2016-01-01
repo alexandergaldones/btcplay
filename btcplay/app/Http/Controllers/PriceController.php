@@ -41,14 +41,13 @@ class PriceController extends Controller
             );
         }
 
-        if (strpos(php_sapi_name(), 'cli') !== false) 
-        {
+        
             return view('home',
                 array(
                     'prices' => $prices
                 )
             );
-        }
+        
     }
 
     private function getBitpay()
