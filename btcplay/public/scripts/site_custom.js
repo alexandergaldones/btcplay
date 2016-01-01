@@ -5,7 +5,7 @@ $(function(){
 	function get_btcprice(){
 	    var feedback = $.ajax({
 	        type: "GET",
-	        url: "/price",
+	        url: "/index.php/price",
 	        async: true
 	    })
 	    .success(function(data){	        
