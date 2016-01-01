@@ -74,7 +74,7 @@ class PriceController extends Controller
        $url = config('app.exchanges_uri')['coinbase'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Coinbase';
-        $json['last'] = 'USD $' . number_format($json["amount"], 2);
+        $json['last'] = !empty($json["amount"]) ? 'USD $' . number_format($json["amount"], 2) : "Exchange unreachable :(";
         return $json;         
     }
 
@@ -83,7 +83,7 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['btce'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'BTC-e';
-        $json['last'] = 'USD $' . number_format($json["ticker"]["last"], 2);
+        $json['last'] = !empty($json["ticker"]["last"]) ? 'USD $' . number_format($json["ticker"]["last"], 2) : "Exchange unreachable :(";
         return $json;        
     }
 
@@ -92,7 +92,7 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitstamp'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitstamp';
-        $json['last'] = 'USD $' . number_format($json['last'], 2);
+        $json['last'] = !empty($json['last']) ? 'USD $' . number_format($json['last'], 2) : "Exchange unreachable :(";
         return $json;
     }
 
