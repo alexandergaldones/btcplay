@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use Cache;
 
@@ -15,12 +14,12 @@ class PriceController extends Controller
      * @return Response
      */
     public function showPrices()
-    {
+    {        
         $prices = array();
 
         if( Cache::has('btc_prices') )
-        {
-            $prices = Cache::get('btc_prices');            
+        {            
+            $prices = Cache::get('btc_prices');
         }
         else 
         {
@@ -30,7 +29,7 @@ class PriceController extends Controller
             $prices['bitstamp'] = self::getBitstamp();
             $prices['btce'] = self::getBtce();
 
-            Cache::forever('btc_prices', $prices);
+            Cache::put('btc_prices', $prices, 1);
         }
 
         if( Request::ajax() )
@@ -42,11 +41,14 @@ class PriceController extends Controller
             );
         }
 
-        return view('home',
-            array(
-                'prices' => $prices
-            )
-        );
+        if (strpos(php_sapi_name(), 'cli') !== false) 
+        {
+            return view('home',
+                array(
+                    'prices' => $prices
+                )
+            );
+        }
     }
 
     private function getBitpay()
