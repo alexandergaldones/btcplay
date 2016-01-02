@@ -34,13 +34,28 @@ class PriceController extends Controller
                 )
             );
         }
+        $top_news_daily = self::getTopNewsDaily();
         
         return view('home',
             array(
-                'prices' => $prices
+                'prices' => $prices,
+                'top_news_daily' => $top_news_daily
             )
         );
         
+    }
+
+    public function getTopNewsDaily()
+    {
+        $top_news_daily = array();
+        if(Cache::has('top_news_daily'))
+        {
+            $top_news_daily = json_decode( Cache::get('top_news_daily'), true);
+        } else {
+            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')));
+        }
+
+        return $top_news_daily;        
     }
 
     public function getBTCPrices()

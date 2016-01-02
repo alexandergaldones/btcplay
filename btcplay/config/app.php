@@ -209,7 +209,9 @@ return [
         
 
     ],
-
+    /**
+     ** URI for bitcoin data from different bitcoin exchanges
+     **/
     'exchanges_uri' => [
         'coinsph'               =>          'https://coins.ph/api/v1/quote',
         'bitfinex'              =>          'https://api.bitfinex.com/v1/ticker/btcusd',
@@ -220,5 +222,10 @@ return [
         'blockchaininfo'        =>          'https://blockchain.info/ticker',
         'bitcoinaverage'        =>          'https://api.bitcoinaverage.com/ticker/all',
     ],
+
+    /**
+     ** URI for top news daily
+     **/
+    'top_news_daily_uri'        =>          'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q=bitcoin%20blockchain%20crypto%20currency',
 
 ];

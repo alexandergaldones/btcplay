@@ -20,6 +20,15 @@ Route::get('price', array(
 	'uses' => 'PriceController@showPrices'
 ));
 
+Route::get('news/{tite}/{source}/{uri}/{datepublished}',function($title, $source, $uri, $datepublished){
+	return view('news.shownews', array(
+		'title' 			=> 	$title,
+		'source'			=> 	$source,	
+		'uri'				=>	$uri,
+		'datepublished'		=>	$datepublished
+	));
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

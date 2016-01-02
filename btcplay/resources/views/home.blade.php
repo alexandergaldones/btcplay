@@ -59,55 +59,35 @@
                  </div>                     
               </div>
               <div class="col-md-6">
-              <div class="top-news">
+                <div class="top-news">
                     <a href="#" class="btn blue">
                     <span>Featured News</span>
                     <em>
                     <i class="icon-tags"></i>
-                    USA, Business, Apple
+                    Bitcoin, Blockchain, Altcoins and Cryptocurrencies
                     </em>
                     <i class="icon- icon-bullhorn top-news-icon"></i>                             
                     </a>
                  </div>
+                 @foreach($top_news_daily['responseData']['results'] as $news)
                  <div class="news-blocks">
-                    <h3><a href="#">Google Glass Technology..</a></h3>
+                    <h3><a href="{{$news['unescapedUrl']}}" target="_newspage">{{ $news['titleNoFormatting'] }}</a></h3>
                     <div class="news-block-tags">
-                       <strong>CA, USA</strong>
-                       <em>3 hours ago</em>
+                       <strong>{{ $news['publisher'] }}</strong>
+                       <em>{{ $news['publishedDate']}}</em>
                     </div>
-                    <p><img class="news-block-img pull-right" src="assets/img/gallery/image1.jpg" alt="">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                    <a href="#" class="news-block-btn">
+                    <p><img class="news-block-img pull-right" src="{{ $news['image']['url'] }}" width="{{ $news['image']['tbWidth'] }}" width="{{ $news['image']['tbHeight'] }}" alt="$news['image']['publisher']">
+                      {{ strip_tags($news['content']) }}
+                    </p>
+                    <a href="{{ $news['unescapedUrl'] }} target="_newspage" class="news-block-btn">
                     Read more
                     <i class="m-icon-swapright m-icon-black"></i>                              
                     </a>                          
                  </div>
-                 <div class="news-blocks">
-                    <h3><a href="#">Sint occaecati cupiditat</a></h3>
-                    <div class="news-block-tags">
-                       <strong>London, UK</strong>
-                       <em>7 hours ago</em>
-                    </div>
-                    <p><img class="news-block-img pull-right" src="assets/img/gallery/image4.jpg" alt="">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                    <a href="#" class="news-block-btn">
-                    Read more
-                    <i class="m-icon-swapright m-icon-black"></i>                              
-                    </a>                          
-                 </div>
-                 <div class="news-blocks">
-                    <h3><a href="#">Accusamus et iusto odio</a></h3>
-                    <div class="news-block-tags">
-                       <strong>CA, USA</strong>
-                       <em>3 hours ago</em>
-                    </div>
-                    <p><img class="news-block-img pull-right" src="assets/img/gallery/image5.jpg" alt="">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                    <a href="#" class="news-block-btn">
-                    Read more
-                    <i class="m-icon-swapright m-icon-black"></i>                              
-                    </a>                          
-                 </div>
+                 @endforeach
               </div>
         </div>
-        <!-- END PAGE LANE-->
+        <!-- END NEWS PAGE LANE-->
      </div>
      <!-- END PAGE HEADER-->
      <!-- BEGIN DASHBOARD STATS -->
@@ -217,6 +197,7 @@
       </div>
       <!-- END DASHBOARD STATS -->
 
+      <!--
       <div class="row">        
         <div class="panel panel-primary">
            <div class="panel-heading">
@@ -234,6 +215,7 @@
            </div>
         </div>
       </div>
+     -->
         
                   
 
