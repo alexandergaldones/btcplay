@@ -44,6 +44,7 @@ class Headliners extends Command
             $controller = new PriceController();
             $controller->getHeadlines();  
             $this->comment('done. waiting for the next run...');
+            sleep(30);
         }
     }
 }
