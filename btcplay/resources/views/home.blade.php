@@ -26,7 +26,7 @@
                        <div class="{{ $index==0 ? 'active' : ''}} item">
                           <img src="{{ !empty($headline['image']['url']) ? $headline['image']['url'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
-                             <h4><a href="#">{{ $headline['titleNoFormatting'] }}</a></h4>
+                             <h4><a href="{{ $headline['unescapedUrl'] }} target="_newspage">{{ $headline['titleNoFormatting'] }}</a></h4>
                              <p>{{ strip_tags($headline['content']) }}</p>
                           </div>
                        </div>
