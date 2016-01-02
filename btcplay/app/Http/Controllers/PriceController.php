@@ -16,6 +16,7 @@ class PriceController extends Controller
     public function showPrices()
     {
         $prices = array();
+        //$prices = self::getBTCPrices();
         if( Cache::has('btc_prices') )
         {            
             $prices = Cache::get('btc_prices');
@@ -51,6 +52,8 @@ class PriceController extends Controller
         $prices['bitfinex'] = self::getBitfinex();
         $prices['bitstamp'] = self::getBitstamp();
         $prices['btce'] = self::getBtce();
+        $prices['bitcoinaverage'] = self::getBitcoinaverage();
+        $prices['bitpay'] = self::getBitpay();
 
         Cache::forever('btc_prices',$prices);
         return $prices;
@@ -61,8 +64,8 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitpay'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitpay';
-        $json['last'] = 'USD $' . number_format($json[1]["rate"], 2);
-        return $json;      
+        $json['rate'] = 'USD $' . number_format($json[1]["rate"], 2);
+        return $json;
     }
 
     private function getBitcoinaverage()
@@ -70,7 +73,7 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitcoinaverage'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitcoinaverage';
-        $json['last'] = 'USD $' . number_format($json["USD"]['last'], 2);
+        $json["USD"]['last'] = 'USD $' . number_format($json["USD"]['last'], 2);
         return $json;        
     }
 

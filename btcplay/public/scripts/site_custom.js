@@ -14,6 +14,8 @@ $(function(){
 	        $('.blockchaininfo').html(data.prices.blockchaininfo.price);
 	        $('.bitstamp').html(data.prices.bitstamp.price);
 	        $('.btce').html(data.prices.btce.price);
+	        $('.bitcoinaverage').html(data.prices.bitcoinaverage.USD.last);
+	        $('.bitpay').html(data.prices.bitpay.rate);
 	    }).responseText;
 	    $('div.feedback-box').html(feedback);
 	}	

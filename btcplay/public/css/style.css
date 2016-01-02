@@ -2818,6 +2818,14 @@ Dashboard stats
   float: right;
 }
 
+.dashboard-stat.peach {
+  background-color: #D46A6A;
+}
+
+.dashboard-stat.lightblue {
+  background-color: #AA3939;
+}
+
 .dashboard-stat.blue {
   background-color: #27a9e3;
 }
