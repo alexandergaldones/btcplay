@@ -73,7 +73,7 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitcoinaverage'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitcoinaverage';
-        $json["USD"]['last'] = 'USD $' . number_format($json["USD"]['last'], 2);
+        $json["USD"]['last'] = !empty($json["USD"]['last']) ? 'USD $' . number_format($json["USD"]['last'], 2) : "Exchange unreachable :(";
         return $json;        
     }
 
