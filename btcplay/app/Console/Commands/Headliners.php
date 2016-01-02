@@ -38,9 +38,12 @@ class Headliners extends Command
      */
     public function handle()
     {
-        $this->comment('Caching Headlines       :       ' . date('Y-m-d H:i:s'));
-        $controller = new PriceController();
-        $controller->getHeadlines();  
-        $this->comment('done. waiting for the next run...');
+        while(true)
+        {
+            $this->comment('Caching Headlines       :       ' . date('Y-m-d H:i:s'));
+            $controller = new PriceController();
+            $controller->getHeadlines();  
+            $this->comment('done. waiting for the next run...');
+        }
     }
 }
