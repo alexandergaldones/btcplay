@@ -34,12 +34,14 @@ class PriceController extends Controller
                 )
             );
         }
+        $headliners = self::getHeadlines();        
         $top_news_daily = self::getTopNewsDaily();
         
         return view('home',
             array(
                 'prices' => $prices,
-                'top_news_daily' => $top_news_daily
+                'top_news_daily' => $top_news_daily,
+                'headliners'    => $headliners
             )
         );
         
@@ -56,6 +58,26 @@ class PriceController extends Controller
         }
 
         return $top_news_daily;        
+    }
+
+    public function getHeadlines()
+    {
+        $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=2&q=';
+        $keywords = array(
+            'bitcoin',
+            'blockchain',
+            'cryptocurrency',
+            'altcoins'
+        );
+        $headliners = array();
+        foreach($keywords as $keyword)
+        {
+            $result = json_decode( file_get_contents($uri.$keyword), true );
+            $headliners = array_merge($result['responseData']['results'],$headliners);
+        }        
+        Cache::forever('headliners', $headliners);
+
+        return $headliners;
     }
 
     public function getBTCPrices()

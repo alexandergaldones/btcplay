@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\Inspire::class,
         Commands\UpdateBitcoinPrice::class,
         Commands\Cryptonews::class,
+        Commands\Headliners::class,
     ];
 
     /**
@@ -29,6 +30,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')
                  ->hourly();
         $schedule->command('btc:update')
+                 ->everyMinute();
+        $schedule->command('btc:headline')
                  ->everyMinute();
         $schedule->command('btc:news')
                  ->everyMinute();

@@ -29,6 +29,7 @@ Route::get('news/{tite}/{source}/{uri}/{datepublished}',function($title, $source
 	));
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

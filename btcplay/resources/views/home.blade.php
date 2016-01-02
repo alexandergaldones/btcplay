@@ -22,27 +22,15 @@
               <div class="col-md-6">
                  <div id="myCarousel" class="carousel image-carousel slide">
                     <div class="carousel-inner">
-                       <div class="active item">
-                          <img src="{{ asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
+                       @foreach($headliners as $index => $headline)
+                       <div class="{{ $index==0 ? 'active' : ''}} item">
+                          <img src="{{ !empty($headline['image']['url']) ? $headline['image']['url'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
-                             <h4><a href="#">First Thumbnail label</a></h4>
-                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                             <h4><a href="#">{{ $headline['titleNoFormatting'] }}</a></h4>
+                             <p>{{ strip_tags($headline['content']) }}</p>
                           </div>
                        </div>
-                       <div class="item">
-                          <img src="{{ asset('img/gallery/image2.jpg') }}" class="img-responsive" alt="">
-                          <div class="carousel-caption">
-                             <h4><a href="#">Second Thumbnail label</a></h4>
-                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                          </div>
-                       </div>
-                       <div class="item">
-                          <img src="{{ asset('img/gallery/image1.jpg') }}" class="img-responsive" alt="">
-                          <div class="carousel-caption">
-                             <h4><a href="#">Third Thumbnail label</a></h4>
-                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                          </div>
-                       </div>
+                       @endforeach
                     </div>
                     <!-- Carousel nav -->
                     <a class="carousel-control left" href="#myCarousel" data-slide="prev">
@@ -52,9 +40,9 @@
                     <i class="m-icon-big-swapright m-icon-white"></i>
                     </a>
                     <ol class="carousel-indicators">
-                       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                       <li data-target="#myCarousel" data-slide-to="1"></li>
-                       <li data-target="#myCarousel" data-slide-to="2"></li>
+                      @foreach( range(0, count($headliners) ) as $index )
+                        <li data-target="#myCarousel" data-slide-to="{{$index}}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+                      @endforeach
                     </ol>
                  </div>                     
               </div>
