@@ -226,6 +226,6 @@ return [
     /**
      ** URI for top news daily
      **/
-    'top_news_daily_uri'        =>          'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q=bitcoin%20blockchain%20crypto%20currency',
+    'top_news_daily_uri'        =>          'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q=bitcoin',
 
 ];
