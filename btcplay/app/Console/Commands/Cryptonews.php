@@ -41,7 +41,7 @@ class Cryptonews extends Command
         while(true)
         {
             $this->comment('caching google news as of ' . date('Y-m-d H:i:s'));
-            Cache::forever('top_news_daily',file_get_contents('https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=5&q=bitcoin%20blockchain%20crypto%20currency'));
+            Cache::forever('top_news_daily',file_get_contents('https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=5&q=bitcoin%20blockchain'));
             $this->comment('caching done. waiting for next run...');
             sleep(30);
         }

@@ -67,13 +67,16 @@ class PriceController extends Controller
             'bitcoin',
             'blockchain',
             'cryptocurrency',
-            'altcoins'
+            'altcoin'
         );
         $headliners = array();
         foreach($keywords as $keyword)
         {
             $result = json_decode( file_get_contents($uri.$keyword), true );
+	    if(!empty($result))
+	    {
             $headliners = array_merge($result['responseData']['results'],$headliners);
+	    }
         }        
         Cache::forever('headliners', $headliners);
 
