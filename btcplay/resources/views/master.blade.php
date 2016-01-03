@@ -24,7 +24,7 @@
             <!-- BEGIN USER LOGIN DROPDOWN -->
             <li class="dropdown user">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-               <img alt="" src="img/avatar.png" style="width: 29px; height:29px;"/>
+               <img alt="" src="{{ asset('img/avatar.png') }}" style="width: 29px; height:29px;"/>
                <span class="username">Heyyah, Guest!</span>
                <i class="icon-angle-down"></i>
                </a>
