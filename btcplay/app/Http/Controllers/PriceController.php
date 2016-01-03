@@ -68,10 +68,10 @@ class PriceController extends Controller
     public function getHeadlines($limit=2, $cacheName = 'headliners')
     {
         $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=' . $limit . '&q=';
-        $keywords = array(            
+        $keywords = array(           
+            'altcoin', 
             'cryptocurrency',
-            'blockchain',            
-            'altcoin',
+            'blockchain',                        
             'bitcoin',
         );
         $headliners = array();
