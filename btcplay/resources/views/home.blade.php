@@ -19,7 +19,7 @@
         </div>
         <!-- NEWS PAGE LANE --> 
         <div class="col-md-12 news-page">
-              <div class="col-md-4">
+              <div class="col-md-5">
                  <div id="myCarousel" class="carousel image-carousel slide">
                     <div class="carousel-inner">
                        @foreach($headliners as $index => $headline)
@@ -46,7 +46,7 @@
                     </ol>
                  </div>                     
               </div>
-              <div class="col-md-8">
+              <div class="col-md-7">
                 <div class="top-news">
                     <a href="#" class="btn blue">
                     <span>Featured News</span>
