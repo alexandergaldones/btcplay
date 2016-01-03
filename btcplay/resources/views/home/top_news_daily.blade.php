@@ -57,7 +57,7 @@
                <em></em>
             </div>
             <p><img class="news-block-img pull-right" src="assets/img/gallery/image1.jpg" alt="">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            <a href="#" class="news-block-btn">
+            <a href="/index.php/{{ $news[''] }}" class="news-block-btn">
             Read more
             <i class="m-icon-swapright m-icon-black"></i>                              
             </a>                          

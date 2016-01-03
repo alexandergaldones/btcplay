@@ -54,31 +54,36 @@ class PriceController extends Controller
         {
             $top_news_daily = json_decode( Cache::get('top_news_daily'), true);
         } else {
-            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')));
+            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri').'?'.mt_rand()));
         }
 
         return $top_news_daily;        
     }
 
-    public function getHeadlines()
+    public function getAllTrendingNews()
     {
-        $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=2&q=';
-        $keywords = array(
-            'bitcoin',
-            'blockchain',
+        return $this->getHeadlines(8,'allnews');
+    }
+
+    public function getHeadlines($limit=2, $cacheName = 'headliners')
+    {
+        $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=' . $limit . '&q=';
+        $keywords = array(            
             'cryptocurrency',
-            'altcoin'
+            'blockchain',            
+            'altcoin',
+            'bitcoin',
         );
         $headliners = array();
         foreach($keywords as $keyword)
         {
-            $result = json_decode( file_get_contents($uri.$keyword), true );
-	    if(!empty($result))
-	    {
-            $headliners = array_merge($result['responseData']['results'],$headliners);
-	    }
+            $result = json_decode( file_get_contents($uri.$keyword), true );            
+    	    if(!empty($result))
+    	    {                
+                $headliners = array_merge($result['responseData']['results'],$headliners);
+    	    }
         }        
-        Cache::forever('headliners', $headliners);
+        Cache::forever($cacheName, $headliners);
 
         return $headliners;
     }

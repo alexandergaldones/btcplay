@@ -19,7 +19,7 @@
         </div>
         <!-- NEWS PAGE LANE --> 
         <div class="col-md-12 news-page">
-              <div class="col-md-6">
+              <div class="col-md-4">
                  <div id="myCarousel" class="carousel image-carousel slide">
                     <div class="carousel-inner">
                        @foreach($headliners as $index => $headline)
@@ -46,13 +46,13 @@
                     </ol>
                  </div>                     
               </div>
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <div class="top-news">
                     <a href="#" class="btn blue">
                     <span>Featured News</span>
                     <em>
                     <i class="icon-tags"></i>
-                    Bitcoin, Blockchain, Altcoins and Cryptocurrencies
+                    Bitcoin and Blockchain
                     </em>
                     <i class="icon- icon-bullhorn top-news-icon"></i>                             
                     </a>
@@ -67,7 +67,7 @@
                     <p><img class="news-block-img pull-right" src="{{ $news['image']['url'] }}" width="{{ $news['image']['tbWidth'] }}" width="{{ $news['image']['tbHeight'] }}" alt="$news['image']['publisher']">
                       {{ strip_tags($news['content']) }}
                     </p>
-                    <a href="{{ $news['unescapedUrl'] }} target="_newspage" class="news-block-btn">
+                    <a href="{{ $news['unescapedUrl'] }}" target="_newspage" class="news-block-btn">
                     Read more
                     <i class="m-icon-swapright m-icon-black"></i>                              
                     </a>                          

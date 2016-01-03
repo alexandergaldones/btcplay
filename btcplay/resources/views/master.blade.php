@@ -78,6 +78,12 @@
                </a>
             </li>
             <li>
+               <a href="/index.php/latest-news">
+               <i class="icon-coffee"></i> 
+               <span class="title">Daily News</span>               
+               </a>
+            </li>
+            <li>
                <a href="javascript:;">
                <i class="icon-folder-open"></i> 
                <span class="title">Altcoins</span>

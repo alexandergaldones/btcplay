@@ -42,7 +42,10 @@ class Headliners extends Command
         {
             $this->comment('Caching Headlines       :       ' . date('Y-m-d H:i:s'));
             $controller = new PriceController();
+            $this->comment('Getting top 2 News');
             $controller->getHeadlines();  
+            $this->comment('Getting All for news page');
+            $controller->getAllTrendingNews(); 
             $this->comment('done. waiting for the next run...');
             sleep(30);
         }

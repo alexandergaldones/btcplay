@@ -30,6 +30,22 @@ Route::get('news/{tite}/{source}/{uri}/{datepublished}',function($title, $source
 });
 
 
+Route::get('latest-news',function(){
+	
+	$allnews = array();
+	if( Cache::has('allnews') )
+	{
+		$allnews = Cache::get('allnews');
+	} else {
+		$pcontroller =  new App\Http\Controllers\PriceController();
+		$allnews = $pcontroller->getAllTrendingNews();
+	}
+	
+	return view('news.allnews', array(
+		'allnews' => $allnews
+	));
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
