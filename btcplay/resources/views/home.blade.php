@@ -57,6 +57,7 @@
                     <i class="icon- icon-bullhorn top-news-icon"></i>                             
                     </a>
                  </div>
+		{{--
                  @foreach($top_news_daily['responseData']['results'] as $news)
                  <div class="news-blocks">
                     <h3><a href="{{$news['unescapedUrl']}}" target="_newspage">{{ $news['titleNoFormatting'] }}</a></h3>
@@ -73,6 +74,7 @@
                     </a>                          
                  </div>
                  @endforeach
+		--}}
               </div>
         </div>
         <!-- END NEWS PAGE LANE-->

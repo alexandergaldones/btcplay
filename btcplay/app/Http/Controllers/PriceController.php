@@ -78,11 +78,11 @@ class PriceController extends Controller
         foreach($keywords as $keyword)
         {
             $result = json_decode( file_get_contents($uri.$keyword), true );            
-    	    if(!empty($result))
+	    if( is_array($result['responseData']['results']))
     	    {                
                 $headliners = array_merge($result['responseData']['results'],$headliners);
     	    }
-        }        
+        }       
         Cache::forever($cacheName, $headliners);
 
         return $headliners;
