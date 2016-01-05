@@ -54,7 +54,11 @@ class PriceController extends Controller
         {
             $top_news_daily = json_decode( Cache::get('top_news_daily'), true);
         } else {
-            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri').'?'.mt_rand()));
+            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')), true);
+	    if( is_array($result['responseData']['results']))
+	    {
+		Cache::forever('top_news_daily',$top_news_daily);
+	    }
         }
 
         return $top_news_daily;        

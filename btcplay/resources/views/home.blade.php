@@ -27,7 +27,7 @@
                           <img src="{{ !empty($headline['image']['url']) ? $headline['image']['url'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
                              <h4><a href="{{ $headline['unescapedUrl'] }}" target="_newspage">{{ $headline['titleNoFormatting'] }}</a></h4>
-                             <p>{{ strip_tags($headline['content']) }}</p>
+                             <p>{{ strip_tags($headline['content']) }}(Source: {{ $headline['publisher']  }})</p>
                           </div>
                        </div>
                        @endforeach
@@ -57,7 +57,7 @@
                     <i class="icon- icon-bullhorn top-news-icon"></i>                             
                     </a>
                  </div>
-		{{--
+		 @if(isset($top_news_daily['responseData']['results']))
                  @foreach($top_news_daily['responseData']['results'] as $news)
                  <div class="news-blocks">
                     <h3><a href="{{$news['unescapedUrl']}}" target="_newspage">{{ $news['titleNoFormatting'] }}</a></h3>
@@ -74,7 +74,7 @@
                     </a>                          
                  </div>
                  @endforeach
-		--}}
+		 @endif
               </div>
         </div>
         <!-- END NEWS PAGE LANE-->
