@@ -47,10 +47,9 @@ Route::get('latest-news',function(){
 });
 
 Route::get('test',function(){
-
 	$ns = json_encode ( simplexml_load_string( file_get_contents('http://news.google.com/news/section?q=apple&output=rss') ) );
 	$ns2 = json_decode($ns, true);
-	dd($ns2);
+	$params = explode("&", $ns2['channel']['item'][0]['link']); 	
 });
 
 /*
