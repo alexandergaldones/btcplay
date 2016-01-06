@@ -49,7 +49,7 @@
               <div class="col-md-7">
                 <!-- BEGIN DASHBOARD STATS -->
                  <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat blue">
                           <div class="visual">
                              <i class="icon-comments"></i>
@@ -67,7 +67,7 @@
                           </a>                 
                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat green">
                           <div class="visual">
                              <i class="icon-shopping-cart"></i>
@@ -81,7 +81,7 @@
                           </a>                 
                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat purple">
                           <div class="visual">
                              <i class="icon-globe"></i>
@@ -95,7 +95,7 @@
                           </a>                 
                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat yellow">
                           <div class="visual">
                              <i class="icon-bar-chart"></i>
@@ -109,7 +109,7 @@
                           </a>                 
                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat red">
                           <div class="visual">
                              <i class="icon-bar-chart"></i>
@@ -123,7 +123,7 @@
                           </a>                 
                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat peach">
                           <div class="visual">
                              <i class="icon-bar-chart"></i>
@@ -137,7 +137,7 @@
                           </a>                 
                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
                        <div class="dashboard-stat lightblue">
                           <div class="visual">
                              <i class="icon-bar-chart"></i>
