@@ -176,7 +176,7 @@
                        <strong>{{ $news['publisher'] }}</strong>
                        <em>{{ $news['publishedDate']}}</em>
                     </div>
-                    <p><img class="news-block-img pull-right" src="{{ $news['image']['url'] }}" width="{{ $news['image']['tbWidth'] }}" width="{{ $news['image']['tbHeight'] }}" alt="$news['image']['publisher']">
+                    <p><img class="news-block-img pull-right" src="{{ !empty($news['image']['url']) ? $news['image']['url'] : asset('img/gallery/image5.jpg') }}" width="{{ !empty($news['image']['tbWidth']) ? $news['image']['tbWidth'] : '70' }}" width="{{ !empty($news['image']['tbHeight']) ? $news['image']['tbHeight'] : '70'}}" alt="{{ $news['publisher'] }}">
                       {{ strip_tags($news['content']) }}
                     </p>
                     <a href="{{ $news['unescapedUrl'] }}" target="_newspage" class="news-block-btn">
