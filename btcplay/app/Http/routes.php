@@ -52,6 +52,10 @@ Route::get('test',function(){
 	$params = explode("&", $ns2['channel']['item'][0]['link']); 	
 });
 
+Route::get('alerts',function(){
+	
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
