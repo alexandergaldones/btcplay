@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,8 +57,13 @@ return [
         ],
 
         'redis' => [
-            'driver' => 'redis',
-            'connection' => 'default',
+		'driver'  => 'redis',
+		'cluster' => false,
+		'default' => [
+	        	'host'     => '188.166.209.234',
+		        'port'     => 6379,
+		        'database' => 0,
+		],
         ],
 
     ],
@@ -74,6 +79,6 @@ return [
     |
     */
 
-    'prefix' => 'laravel',
+    'prefix' => 'bitgp',
 
 ];
