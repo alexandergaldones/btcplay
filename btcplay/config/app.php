@@ -221,11 +221,21 @@ return [
         'bitpay'                =>          'https://bitpay.com/api/rates',
         'blockchaininfo'        =>          'https://blockchain.info/ticker',
         'bitcoinaverage'        =>          'https://api.bitcoinaverage.com/ticker/all',
+        'huobi'                 =>          'http://api.huobi.com/staticmarket/ticker_btc_json.js',
+        'okcoin'                =>          array(),
     ],
 
     /**
      ** URI for top news daily
      **/
     'top_news_daily_uri'        =>          'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q=bitcoin',
+
+    /**
+     ** Faroo free api 1,000,000 request per month free
+     **/
+    'faroo_api_key'             =>          array(
+                                                'api_uri'       =>      'http://www.faroo.com/api',
+                                                'key'           =>      'iyFb9CZbZ2KRj5hJuXEcRCZJDR8_'
+                                            ),
 
 ];

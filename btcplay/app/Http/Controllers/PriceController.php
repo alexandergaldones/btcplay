@@ -71,7 +71,7 @@ class PriceController extends Controller
 
     public function getHeadlines($limit=2, $cacheName = 'headliners')
     {
-        $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=' . $limit . '&q=';
+        $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=' . $limit . '&q=';        
         $keywords = array(           
             'altcoin', 
             'cryptocurrency',
@@ -81,6 +81,18 @@ class PriceController extends Controller
         $headliners = array();
         foreach($keywords as $keyword)
         {
+            $params = array(
+                'q'         =>  $keyword,
+                'start'     =>  1,
+                'length'    => 10,
+                'l'         => 'en',
+                'src'       =>  'topics',
+                'f'         =>  'json',
+                'key'       =>  config('app.faroo_api_key')['key']
+            );
+
+            $uri2 = config('app.faroo_api_key')['api_uri'] . '?' .http_build_query($params);            
+
             $result = json_decode( file_get_contents($uri.$keyword), true );            
 	    if( is_array($result['responseData']['results']))
     	    {                
