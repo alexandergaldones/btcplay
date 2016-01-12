@@ -23,11 +23,11 @@
                  <div id="myCarousel" class="carousel image-carousel slide">
                     <div class="carousel-inner">
                        @foreach($headliners as $index => $headline)
-                       <div class="{{ $index==0 ? 'active' : ''}} item" style="min-height:380px;">
-                          <img src="{{ !empty($headline['image']['url']) ? $headline['image']['url'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
+                       <div class="{{ $index==0 ? 'active' : ''}} item" style="min-height:320px;">
+                          <img src="{{ !empty($headline['iurl']) ? $headline['iurl'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
-                             <h4><a href="{{ $headline['unescapedUrl'] }}" target="_newspage">{{ $headline['titleNoFormatting'] }}</a></h4>
-                             <p>{{ strip_tags($headline['content']) }}(Source: {{ $headline['publisher']  }})</p>
+                             <h4><a href="{{ $headline['url'] }}" target="_newspage">{{ $headline['title'] }}</a></h4>
+                             <p>{{ strip_tags($headline['kwic']) }}(Source: {{ $headline['author']  }})</p>
                           </div>
                        </div>
                        @endforeach
@@ -168,18 +168,18 @@
                   <i class="icon- icon-bullhorn top-news-icon"></i>                             
                   </a>
                </div>
-                @if(isset($top_news_daily['responseData']['results']))
-                 @foreach($top_news_daily['responseData']['results'] as $news)
+                @if(isset($top_news_daily))
+                 @foreach($top_news_daily as $news)                 
                  <div class="news-blocks">
-                    <h3><a href="{{$news['unescapedUrl']}}" target="_newspage">{{ $news['titleNoFormatting'] }}</a></h3>
+                    <h3><a href="{{$news['url']}}" target="_newspage">{{ $news['title'] }}</a></h3>
                     <div class="news-block-tags">
-                       <strong>{{ $news['publisher'] }}</strong>
-                       <em>{{ $news['publishedDate']}}</em>
+                       <strong>{{ $news['author'] }}</strong>
+                       <em>{{ date('Y/m/d H:i:s',$news['date']) }}</em>
                     </div>
-                    <p><img class="news-block-img pull-right" src="{{ !empty($news['image']['url']) ? $news['image']['url'] : asset('img/gallery/image5.jpg') }}" width="{{ !empty($news['image']['tbWidth']) ? $news['image']['tbWidth'] : '70' }}" width="{{ !empty($news['image']['tbHeight']) ? $news['image']['tbHeight'] : '70'}}" alt="{{ $news['publisher'] }}">
-                      {{ strip_tags($news['content']) }}
+                    <p><img class="news-block-img pull-right" src="{{ !empty($news['iurl']) ? $news['iurl'] : asset('img/gallery/image5.jpg') }}" width="70" height="70" alt="{{ $news['author'] }}">
+                      {{ strip_tags($news['kwic']) }}
                     </p>
-                    <a href="{{ $news['unescapedUrl'] }}" target="_newspage" class="news-block-btn">
+                    <a href="{{ $news['url'] }}" target="_newspage" class="news-block-btn">
                     Read more
                     <i class="m-icon-swapright m-icon-black"></i>                              
                     </a>                          

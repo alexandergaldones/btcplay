@@ -48,29 +48,42 @@ class PriceController extends Controller
     }
 
     public function getTopNewsDaily()
-    {
-        $top_news_daily = array();
-        if(Cache::has('top_news_daily'))
+    {   
+        if(Cache::has('top_news_daily_front'))
         {
-            $top_news_daily = json_decode( Cache::get('top_news_daily'), true);
-        } else {
+            $top_news_daily = json_decode( Cache::get('top_news_daily_front')['results'], true);            
+        } 
+        else {
             $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')), true);
-	    if( is_array($result['responseData']['results']))
-	    {
-		Cache::forever('top_news_daily',$top_news_daily);
-	    }
+            if( isset($result['results']))
+            {   
+                Cache::forever('top_news_daily_front',$top_news_daily['results']);                
+            }
         }
 
-        return $top_news_daily;        
+        return $top_news_daily['results'];        
     }
 
     public function getAllTrendingNews()
     {
-        return $this->getHeadlines(8,'allnews');
+        $allnews = array();
+        if(Cache::has('top_news_daily_front'))
+        {
+            $allnews  = json_decode( Cache::get('allnews'), true);            
+        } else {
+            $allnews = $this->getHeadlines(8,'allnews');            
+        }
+
+        return $allnews;
     }
 
     public function getHeadlines($limit=2, $cacheName = 'headliners')
     {
+        if(Cache::has('headliners'))
+        {
+            return Cache::get('headliners');
+        }
+
         $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=' . $limit . '&q=';        
         $keywords = array(           
             'altcoin', 
@@ -84,20 +97,25 @@ class PriceController extends Controller
             $params = array(
                 'q'         =>  $keyword,
                 'start'     =>  1,
-                'length'    => 10,
+                'length'    => 2,
                 'l'         => 'en',
-                'src'       =>  'topics',
+                'src'       =>  'news',
                 'f'         =>  'json',
                 'key'       =>  config('app.faroo_api_key')['key']
             );
 
-            $uri2 = config('app.faroo_api_key')['api_uri'] . '?' .http_build_query($params);            
+            $uri = config('app.faroo_api_key')['api_uri'] . '?' .http_build_query($params);                        
 
-            $result = json_decode( file_get_contents($uri.$keyword), true );            
-	    if( is_array($result['responseData']['results']))
-    	    {                
-                $headliners = array_merge($result['responseData']['results'],$headliners);
-    	    }
+            $result = json_decode( file_get_contents($uri), true );            
+
+            if( isset($result['results']))
+            {
+                if( count($result['results']))
+                {                
+                    $headliners = array_merge($result['results'],$headliners);
+                }
+            }	        
+            sleep(10);
         }       
         Cache::forever($cacheName, $headliners);
 

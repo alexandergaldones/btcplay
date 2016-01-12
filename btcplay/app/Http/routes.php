@@ -53,7 +53,51 @@ Route::get('test',function(){
 });
 
 Route::get('alerts',function(){
-	
+	$top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')), true);
+	dd($top_news_daily);
+    if( isset($result['results']))
+    {
+        if( count($result['results']))
+        {                
+            $headliners = array_merge($result['results'],$headliners);
+            Cache::forever('top_news_daily',$headliners);
+        }
+    }
+
+	/*
+		$keywords = array(           
+            'altcoin', 
+            'cryptocurrency',
+            'blockchain',                        
+            'bitcoin',
+        );
+        $headliners = array();
+        foreach($keywords as $keyword)
+        {
+            $params = array(
+                'q'         =>  $keyword,
+                'start'     =>  1,
+                'length'    => 2,
+                'l'         => 'en',
+                'src'       =>  'news',
+                'f'         =>  'json',
+                'key'       =>  config('app.faroo_api_key')['key']
+            );
+
+            $uri = config('app.faroo_api_key')['api_uri'] . '?' .http_build_query($params);                        
+
+            $result = json_decode( file_get_contents($uri), true );            
+
+            if( isset($result['results']))
+            {
+                if( count($result['results']))
+                {                
+                    $headliners = array_merge($result['results'],$headliners);
+                }
+            }	        
+        }       
+        Cache::forever('test', $headliners);    	
+        */
 });
 
 /*

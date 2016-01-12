@@ -228,7 +228,7 @@ return [
     /**
      ** URI for top news daily
      **/
-    'top_news_daily_uri'        =>          'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q=bitcoin',
+    'top_news_daily_uri'        =>          'http://www.faroo.com/api?q=bitcoin&start=1&length=8&l=en&src=news&f=json&key=iyFb9CZbZ2KRj5hJuXEcRCZJDR8_',//'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q=bitcoin',
 
     /**
      ** Faroo free api 1,000,000 request per month free

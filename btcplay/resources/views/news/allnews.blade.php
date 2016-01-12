@@ -29,18 +29,18 @@
             </em>
             <i class="icon-globe top-news-icon"></i>
             </a>
-         </div>
+         </div>         
          @foreach($allnews as $news)
          <div class="news-blocks">
-           <h3><a href="{{$news['unescapedUrl']}}" target="_newspage">{{ $news['titleNoFormatting'] }}</a></h3>
+           <h3><a href="{{$news['url']}}" target="_newspage">{{ $news['title'] }}</a></h3>
            <div class="news-block-tags">
-              <strong>{{ $news['publisher'] }}</strong>
-              <em>{{ $news['publishedDate'] }}</em>
+              <strong>{{ $news['author'] }}</strong>
+              <em>{{ date('Y/m/d H:i:s',$news['date']) }}</em>
            </div>
-           <p><img class="news-block-img pull-right" src="{{ !empty( $news['image']['url'] ) ? $news['image']['url'] : asset('img/gallery/image5.jpg') }}" width="{{ !empty($news['image']['tbWidth']) ? $news['image']['tbWidth'] : '70px' }}" width="{{ !empty($news['image']['tbHeight']) ? $news['image']['tbHeight'] : '70px'  }}" alt="$news['image']['publisher']">
-             {{ strip_tags($news['content']) }}
+           <p><img class="news-block-img pull-right" src="{{ !empty( $news['iurl'] ) ? $news['iurl'] : asset('img/gallery/image5.jpg') }}" width="70px" height="70px" alt="$news['author']">
+             {{ strip_tags($news['kwic']) }}
            </p>
-           <a href="{{ $news['unescapedUrl'] }}" target="_newspage" class="news-block-btn">
+           <a href="{{ $news['url'] }}" target="_newspage" class="news-block-btn">
            Read more
            <i class="m-icon-swapright m-icon-black"></i>                              
            </a>                          

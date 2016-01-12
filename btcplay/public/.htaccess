@@ -14,3 +14,18 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg “access 3 minutes”
+ExpiresByType image/jpeg “access 3 minutes”
+ExpiresByType image/gif “access 3 minutes”
+ExpiresByType image/png “access 3 minutes”
+ExpiresByType text/css “access 5 minutes”
+ExpiresByType application/pdf “access 3 minutes”
+ExpiresByType text/x-javascript “access 3 minutes”
+ExpiresByType application/x-shockwave-flash “access 3 minutes”
+ExpiresByType image/x-icon “access 3 minutes”
+ExpiresDefault “access 2 days”
+</IfModule>
+ 

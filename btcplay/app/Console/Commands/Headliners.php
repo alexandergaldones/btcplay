@@ -47,7 +47,7 @@ class Headliners extends Command
             $this->comment('Getting All for news page');
             $controller->getAllTrendingNews(); 
             $this->comment('done. waiting for the next run...');
-            sleep(30);
+            sleep(1800);
         }
     }
 }
