@@ -86,7 +86,7 @@
             <li>
                <a href="/index.php/alerts">
                <i class="icon-coffee"></i> 
-               <span class="title">Daily News</span>               
+               <span class="title">Price Alerts</span>               
                </a>
             </li>
             <li>

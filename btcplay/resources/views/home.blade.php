@@ -23,7 +23,7 @@
                  <div id="myCarousel" class="carousel image-carousel slide">
                     <div class="carousel-inner">
                        @foreach($headliners as $index => $headline)
-                       <div class="{{ $index==0 ? 'active' : ''}} item">
+                       <div class="{{ $index==0 ? 'active' : ''}} item" style="min-height:380px;">
                           <img src="{{ !empty($headline['image']['url']) ? $headline['image']['url'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
                              <h4><a href="{{ $headline['unescapedUrl'] }}" target="_newspage">{{ $headline['titleNoFormatting'] }}</a></h4>
