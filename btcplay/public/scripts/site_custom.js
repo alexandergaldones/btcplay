@@ -8,7 +8,8 @@ $(function(){
 	        url: "/index.php/price",
 	        async: true
 	    })
-	    .success(function(data){	        
+	    .success(function(data){	       
+		document.title = data.prices.bitcoinaverage.USD.last + ' = 1 ɃTC - Bitgp.com Your latest news updates and alerts for Bitcoin, Blockchain and Cryptocurrencies'; 
 	        $('.bitfinex').html(data.prices.bitfinex.last_price);
 	        $('.coinsph').html(data.prices.coinsph.quote.ask);
 	        $('.blockchaininfo').html(data.prices.blockchaininfo.price);

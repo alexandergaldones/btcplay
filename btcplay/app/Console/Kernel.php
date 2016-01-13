@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         //$schedule->command('inspire')
         //         ->hourly();
         $schedule->command('btc:update')
-                 ->hourly();
+                 ->everyMinute();
         $schedule->command('btc:headline')
                  ->hourly();
         $schedule->command('btc:news')
