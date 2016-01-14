@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Request;
 use Cache;
+use Intervention\Image\Facades\Image;
 
 
 class PriceController extends Controller
@@ -34,9 +35,9 @@ class PriceController extends Controller
                 )
             );
         }
-        $headliners = self::getHeadlines();        
+        $headliners = self::getHeadlines();                
         $top_news_daily = self::getTopNewsDaily();
-        
+
         return view('home',
             array(
                 'prices' => $prices,
@@ -47,31 +48,59 @@ class PriceController extends Controller
         
     }
 
+    public function cachedNewsImages($news = array())
+    {
+        //if(!isset($news['results'])) 
+         //   return array();
+
+        foreach($news as $key => $row)
+        {
+
+            $iurl = !empty($row['iurl']) ? $row['iurl']  : asset('img/gallery/image5.jpg');
+            //cache the image
+            /*
+            $imgObj = Image::cache(function($image) use ($iurl) {
+                $image->make($iurl)
+                        ->resize(670, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                    });
+            }, 15, true);
+            $res = $imgObj->response('png');
+            $procImg = 'data:image/' . 'png' . ';base64,' . base64_encode($res);
+            $news[$key]['mime_image'] = $procImg;
+            */
+            Cache::put($row['title'], $news[$key], 60);
+        }
+
+        return $news;
+    }
+
     public function getTopNewsDaily()
     {   
         if(Cache::has('top_news_daily_front'))
         {
-            $top_news_daily = json_decode( Cache::get('top_news_daily_front')['results'], true);            
+            $top_news_daily = Cache::get('top_news_daily_front');            
         } 
         else {
-            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')), true);
-            if( isset($result['results']))
+            $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')), true);            
+            if( isset($top_news_daily['results']))
             {   
-                Cache::forever('top_news_daily_front',$top_news_daily['results']);                
+                $top_news_daily = $this->cachedNewsImages($top_news_daily['results']);                
+                Cache::forever('top_news_daily_front',$top_news_daily);                
             }
         }
 
-        return $top_news_daily['results'];        
+        return isset($top_news_daily['results']) ? $top_news_daily['results'] : $top_news_daily;
     }
 
     public function getAllTrendingNews()
     {
         $allnews = array();
-        if(Cache::has('top_news_daily_front'))
+        if(Cache::has('allnews'))
         {
             $allnews  = json_decode( Cache::get('allnews'), true);            
         } else {
-            $allnews = $this->getHeadlines(8,'allnews');            
+            $allnews = $this->getHeadlines(8,'allnews'); 
         }
 
         return $allnews;
@@ -97,7 +126,7 @@ class PriceController extends Controller
             $params = array(
                 'q'         =>  $keyword,
                 'start'     =>  1,
-                'length'    => 2,
+                'length'    => $limit,
                 'l'         => 'en',
                 'src'       =>  'news',
                 'f'         =>  'json',
@@ -116,7 +145,9 @@ class PriceController extends Controller
                 }
             }	        
             sleep(10);
-        }       
+        }
+
+        $headliners = $this->cachedNewsImages($headliners); 
         Cache::forever($cacheName, $headliners);
 
         return $headliners;

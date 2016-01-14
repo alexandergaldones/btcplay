@@ -5,13 +5,25 @@
 @extends('layouts.header')
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NDKCB3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NDKCB3');</script>
+<!-- End Google Tag Manager -->
    <!-- BEGIN HEADER -->   
    <div class="header navbar navbar-inverse navbar-fixed-top">
       <!-- BEGIN TOP NAVIGATION BAR -->
       <div class="header-inner">
          <!-- BEGIN LOGO -->  
          <a class="navbar-brand" href="/">
-         <img src="{{ asset('img/logo.png') }}" alt="logo" class="img-responsive" />
+            <a href="/" class="btn blue btn-lg m-icon-big">
+               BITGP.COM
+               <i class="m-icon-big-swapright m-icon-white"></i>                                
+            </a>      
          </a>
          <!-- END LOGO -->
          <!-- BEGIN RESPONSIVE MENU TOGGLER --> 

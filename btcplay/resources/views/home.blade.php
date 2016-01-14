@@ -22,12 +22,12 @@
               <div class="col-md-5">
                  <div id="myCarousel" class="carousel image-carousel slide">
                     <div class="carousel-inner">
-                       @foreach($headliners as $index => $headline)
+                       @foreach($headliners as $index => $headline)                       
                        <div class="{{ $index==0 ? 'active' : ''}} item" style="min-height:320px;">
                           <img src="{{ !empty($headline['iurl']) ? $headline['iurl'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
-                             <h4><a href="{{ $headline['url'] }}" target="_newspage">{{ $headline['title'] }}</a></h4>
-                             <p>{{ strip_tags($headline['kwic']) }}(Source: {{ $headline['author']  }})</p>
+                             <h4><a href="index.php/news/latest-updates/{{ urlencode($headline['title']) }}" >{{ $headline['title'] }}</a></h4>
+                             <p>{{ strip_tags($headline['kwic']) }}(Source: {{ !empty($headline['author']) ? $headline['author'] : $headline['domain']  }})</p>
                           </div>
                        </div>
                        @endforeach
@@ -171,15 +171,15 @@
                 @if(isset($top_news_daily))
                  @foreach($top_news_daily as $news)                 
                  <div class="news-blocks">
-                    <h3><a href="{{$news['url']}}" target="_newspage">{{ $news['title'] }}</a></h3>
+                    <h3><a href="index.php/news/latest-updates/{{ urlencode($news['title']) }}" >{{ $news['title'] }}</a></h3>
                     <div class="news-block-tags">
-                       <strong>{{ $news['author'] }}</strong>
-                       <em>{{ date('Y/m/d H:i:s',$news['date']) }}</em>
+                       <strong>{{ !empty($news['author']) ? $news['author'] : $news['domain'] }}</strong>
+                       <em>{{ date('H:i:s', floor($news['date']/1000) ) }}</em>
                     </div>
                     <p><img class="news-block-img pull-right" src="{{ !empty($news['iurl']) ? $news['iurl'] : asset('img/gallery/image5.jpg') }}" width="70" height="70" alt="{{ $news['author'] }}">
                       {{ strip_tags($news['kwic']) }}
                     </p>
-                    <a href="{{ $news['url'] }}" target="_newspage" class="news-block-btn">
+                    <a href="{{ $news['url'] }}" class="news-block-btn">
                     Read more
                     <i class="m-icon-swapright m-icon-black"></i>                              
                     </a>                          
@@ -189,27 +189,5 @@
           </div>
             <!-- END NEWS PAGE LANE-->            
      </div>
-     <!-- END PAGE HEADER-->
-      <!--
-      <div class="row">        
-        <div class="panel panel-primary">
-           <div class="panel-heading">
-              <h3 class="panel-title">Global Economic Indicators</h3>
-           </div>             
-           <div class="panel-body" style=" padding-left: 0px; margin-left: -18px;">
-              <div class="col-lg-12">
-                <div class="col-md-6">
-                  <iframe src="http://ec.forexprostools.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&countries=25,32,6,37,72,22,17,39,14,10,35,43,56,36,110,11,26,12,4,5&calType=week&timeZone=55&lang=1" width="500" height="400" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe>
-                </div>
-                <div class="col-md-6">
-                  <iframe frameborder="0" scrolling="no" height="200" width="500" allowtransparency="true" marginwidth="0" marginheight="0" src="http://charts.investing.com/index.php?pair_ID=21&timescale=300&candles=50&style=candles"></iframe>
-                </div>
-              </div>              
-           </div>
-        </div>
-      </div>
-     -->
-        
-                  
 
 @stop

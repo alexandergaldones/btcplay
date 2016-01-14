@@ -32,7 +32,7 @@
          </div>         
          @foreach($allnews as $news)
          <div class="news-blocks">
-           <h3><a href="{{$news['url']}}" target="_newspage">{{ $news['title'] }}</a></h3>
+           <h3><a href="news/latest-updates/{{ urlencode($news['title']) }}" >{{ $news['title'] }}</a></h3>
            <div class="news-block-tags">
               <strong>{{ $news['author'] }}</strong>
               <em>{{ date('Y/m/d H:i:s',$news['date']) }}</em>
