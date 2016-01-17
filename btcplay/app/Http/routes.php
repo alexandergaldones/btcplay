@@ -33,7 +33,7 @@ Route::get('news/latest-updates/{title}', function($title){
 
     if ( Cache::has(urldecode($title)) ) 
     {
-        $newsPage = Cache::get(urldecode($title));        
+        $newsPage = Cache::get(urldecode($title));       
         return view('news.show', array(
             'title'             =>  $newsPage['title'],
             'source'            =>  !empty($newsPage['author']) ? $newsPage['author'] : $newsPage['domain'],

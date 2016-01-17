@@ -24,7 +24,7 @@
                     <div class="carousel-inner">
                        @foreach($headliners as $index => $headline)                       
                        <div class="{{ $index==0 ? 'active' : ''}} item" style="min-height:320px;">
-                          <img src="{{ !empty($headline['iurl']) ? $headline['iurl'] : asset('img/gallery/image5.jpg') }}" class="img-responsive" alt="">
+                          <img src="{{ !empty($headline['iurl']) ? $headline['iurl'] : config('app.imager') [ array_rand(config('app.imager')) ] }}" class="img-responsive" alt="">
                           <div class="carousel-caption">
                              <h4><a href="index.php/news/latest-updates/{{ urlencode($headline['title']) }}" >{{ $headline['title'] }}</a></h4>
                              <p>{{ strip_tags($headline['kwic']) }}(Source: {{ !empty($headline['author']) ? $headline['author'] : $headline['domain']  }})</p>
@@ -89,6 +89,20 @@
                           <div class="details">
                              <div class="number bitfinex">{{ $prices['bitfinex']['last_price'] }}</div>
                              <div class="desc">Bitfinex</div>
+                          </div>
+                          <a class="more" href="#">
+                          View more <i class="m-icon-swapright m-icon-white"></i>
+                          </a>                 
+                       </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                       <div class="dashboard-stat blue">
+                          <div class="visual">
+                             <i class="icon-bar-chart"></i>
+                          </div>
+                          <div class="details">
+                             <div class="number huobi">{{ $prices['huobi']['last'] }}</div>
+                             <div class="desc">{{ $prices['huobi']['exchange'] }}</div>
                           </div>
                           <a class="more" href="#">
                           View more <i class="m-icon-swapright m-icon-white"></i>
@@ -176,7 +190,7 @@
                        <strong>{{ !empty($news['author']) ? $news['author'] : $news['domain'] }}</strong>
                        <em>{{ date('H:i:s', floor($news['date']/1000) ) }}</em>
                     </div>
-                    <p><img class="news-block-img pull-right" src="{{ !empty($news['iurl']) ? $news['iurl'] : asset('img/gallery/image5.jpg') }}" width="70" height="70" alt="{{ $news['author'] }}">
+                    <p><img class="news-block-img pull-right" src="{{ !empty($news['iurl']) ? $news['iurl'] : config('app.imager') [ array_rand(config('app.imager')) ] }}" width="70" height="70" alt="{{ $news['author'] }}">
                       {{ strip_tags($news['kwic']) }}
                     </p>
                     <a href="{{ $news['url'] }}" class="news-block-btn">

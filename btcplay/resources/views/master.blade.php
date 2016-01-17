@@ -20,10 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="header-inner">
          <!-- BEGIN LOGO -->  
          <a class="navbar-brand" href="/">
-            <a href="/" class="btn blue btn-lg m-icon-big">
-               BITGP.COM
-               <i class="m-icon-big-swapright m-icon-white"></i>                                
-            </a>      
+         <img src="{{ asset('img/coollogo_com-24491391.png') }}" alt="logo" class="img-responsive" width="120px" height="20px" />
          </a>
          <!-- END LOGO -->
          <!-- BEGIN RESPONSIVE MENU TOGGLER --> 

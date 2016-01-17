@@ -1,7 +1,7 @@
 <!-- BEGIN HEAD -->
 <head>
    <meta charset="utf-8" />
-   <title>{{ isset($prices['blockchaininfo']['price']) ? $prices['blockchaininfo']['price'] : ''  }} = 1 ɃTC - Bitgp.com Your Bitcoin latest news updates and alerts for Bitcoin, Blockchain and Cryptocurrencies</title>
+   <title>{{ isset($prices['blockchaininfo']['price']) ? $prices['blockchaininfo']['price'] : ''  }} = 1 ɃTC - Bitgp.com Your Bitcoin latest news updates and alerts for Bitcoin, Blockchain and Cryptocurrencies {{ !empty($city) ? 'in' . $city : '' }}, {{ !empty($region) ? $region :'' }}, {{ !empty($country) ? $country : '' }}</title>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />

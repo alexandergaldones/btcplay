@@ -240,4 +240,12 @@ return [
                                                 'key'           =>      'iyFb9CZbZ2KRj5hJuXEcRCZJDR8_'
                                             ),
 
+     'imager'			=>		array(
+							'http://media.gettyimages.com/photos/general-view-of-the-bitcoin-booth-at-the-2015-international-ces-at-picture-id461203600',
+							'https://www.cryptocoinsnews.com/wp-content/uploads/2013/12/bitcoin-best-currency-of-2013.jpg',
+							'https://www.cryptocoinsnews.com/wp-content/uploads/2013/12/satoshi-nakamoto-person-of-the-year.jpg',
+							'https://www.cryptocoinsnews.com/wp-content/uploads/2013/12/bitcoinacceptedhere.png',
+							'https://www.cryptocoinsnews.com/wp-content/uploads/2013/12/bitcoin-image.jpg'
+						),
+
 ];

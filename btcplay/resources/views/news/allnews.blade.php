@@ -37,7 +37,7 @@
               <strong>{{ $news['author'] }}</strong>
               <em>{{ date('Y/m/d H:i:s',$news['date']) }}</em>
            </div>
-           <p><img class="news-block-img pull-right" src="{{ !empty( $news['iurl'] ) ? $news['iurl'] : asset('img/gallery/image5.jpg') }}" width="70px" height="70px" alt="$news['author']">
+           <p><img class="news-block-img pull-right" src="{{ !empty( $news['iurl'] ) ? $news['iurl'] : config('app.imager') [ array_rand(config('app.imager')) ] }}" width="70px" height="70px" alt="$news['author']">
              {{ strip_tags($news['kwic']) }}
            </p>
            <a href="{{ $news['url'] }}" target="_newspage" class="news-block-btn">

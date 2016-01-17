@@ -32,9 +32,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('btc:update')
                  ->everyMinute();
         $schedule->command('btc:headline')
-                 ->hourly();
+                 ->everyThirtyMinutes();
         $schedule->command('btc:news')
-                 ->hourly();
+                 ->everyThirtyMinutes();
 
     }
 }

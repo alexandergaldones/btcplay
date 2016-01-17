@@ -17,11 +17,11 @@
 
 <IfModule mod_expires.c>
 ExpiresActive On
-ExpiresByType image/jpg “access 3 minutes”
-ExpiresByType image/jpeg “access 3 minutes”
-ExpiresByType image/gif “access 3 minutes”
-ExpiresByType image/png “access 3 minutes”
-ExpiresByType text/css “access 5 minutes”
+ExpiresByType image/jpg “access 239 minutes”
+ExpiresByType image/jpeg “access 239 minutes”
+ExpiresByType image/gif “access 239 minutes”
+ExpiresByType image/png “access 239 minutes”
+ExpiresByType text/css “access 10 minutes”
 ExpiresByType application/pdf “access 3 minutes”
 ExpiresByType text/x-javascript “access 3 minutes”
 ExpiresByType application/x-shockwave-flash “access 3 minutes”

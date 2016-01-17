@@ -27,22 +27,43 @@ class PriceController extends Controller
             $prices = self::getBTCPrices();
         }
 
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+
         if( Request::ajax() )
         {
             return response()->json(
                 array(
-                    'prices' => $prices
+                    'prices' => $prices,                    
+                    'city'      =>  $details->city,
+                    'region'      =>  $details->region,
+                    'country'   =>  $details->country
                 )
             );
         }
-        $headliners = self::getHeadlines();                
-        $top_news_daily = self::getTopNewsDaily();
 
+	if(Cache::has('headliners'))
+        {
+            $headliners = Cache::get('headliners');
+        } else {
+	    $headliners = self::getAllTrendingNews();
+	}
+
+        if(Cache::has('top_news_daily_front'))
+        {
+            $top_news_daily = Cache::get('top_news_daily_front');            
+        } else {
+            $top_news_daily =	self::getTopNewsDaily(); 
+	}
+        
         return view('home',
             array(
                 'prices' => $prices,
                 'top_news_daily' => $top_news_daily,
-                'headliners'    => $headliners
+                'headliners'    => $headliners,
+                'city'      =>  $details->city,
+                'region'      =>  $details->region,
+                'country'   =>  $details->country
             )
         );
         
@@ -69,7 +90,7 @@ class PriceController extends Controller
             $procImg = 'data:image/' . 'png' . ';base64,' . base64_encode($res);
             $news[$key]['mime_image'] = $procImg;
             */
-            Cache::put($row['title'], $news[$key], 60);
+            Cache::put($row['title'], $news[$key], 1440);
         }
 
         return $news;
@@ -77,18 +98,18 @@ class PriceController extends Controller
 
     public function getTopNewsDaily()
     {   
-        if(Cache::has('top_news_daily_front'))
-        {
-            $top_news_daily = Cache::get('top_news_daily_front');            
-        } 
-        else {
+        //if(Cache::has('top_news_daily_front'))
+        //{
+         //   $top_news_daily = Cache::get('top_news_daily_front');            
+        //} 
+        //else {
             $top_news_daily = json_decode( file_get_contents(config('app.top_news_daily_uri')), true);            
             if( isset($top_news_daily['results']))
             {   
                 $top_news_daily = $this->cachedNewsImages($top_news_daily['results']);                
                 Cache::forever('top_news_daily_front',$top_news_daily);                
             }
-        }
+        //}
 
         return isset($top_news_daily['results']) ? $top_news_daily['results'] : $top_news_daily;
     }
@@ -96,23 +117,18 @@ class PriceController extends Controller
     public function getAllTrendingNews()
     {
         $allnews = array();
-        if(Cache::has('allnews'))
-        {
-            $allnews  = json_decode( Cache::get('allnews'), true);            
-        } else {
+        //if(Cache::has('allnews'))
+        //{
+        //    $allnews  = json_decode( Cache::get('allnews'), true);            
+        //} else {
             $allnews = $this->getHeadlines(8,'allnews'); 
-        }
+        //}
 
         return $allnews;
     }
 
     public function getHeadlines($limit=2, $cacheName = 'headliners')
     {
-        if(Cache::has('headliners'))
-        {
-            return Cache::get('headliners');
-        }
-
         $uri = 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=' . $limit . '&q=';        
         $keywords = array(           
             'altcoin', 
@@ -144,7 +160,7 @@ class PriceController extends Controller
                     $headliners = array_merge($result['results'],$headliners);
                 }
             }	        
-            sleep(10);
+            sleep(1);
         }
 
         $headliners = $this->cachedNewsImages($headliners); 
@@ -164,6 +180,7 @@ class PriceController extends Controller
         $prices['btce'] = self::getBtce();
         $prices['bitcoinaverage'] = self::getBitcoinaverage();
         $prices['bitpay'] = self::getBitpay();
+        $prices['huobi'] = self::getHuobi();
 
         Cache::forever('btc_prices',$prices);
         return $prices;
@@ -183,7 +200,11 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitcoinaverage'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitcoinaverage';
-        $json["USD"]['last'] = !empty($json["USD"]['last']) ? 'USD $' . number_format($json["USD"]['last'], 2) : "Exchange unreachable :(";
+        if(!empty($json["USD"]['last']))
+        {
+            Cache::put('bitcoinaverage_price', $json["USD"]['last'], 5);
+        }
+        $json["USD"]['last'] = !empty($json["USD"]['last']) ? 'USD $' . number_format($json["USD"]['last'], 2) : Cache::get('bitcoinaverage_price');
         return $json;        
     }
 
@@ -196,12 +217,29 @@ class PriceController extends Controller
         return $json;         
     }
 
+    private function getHuobi()
+    {
+        $url = config('app.exchanges_uri')['huobi'];
+        $json = self::getPriceUri($url);
+        $json['exchange'] = 'Huobi';
+        if(!empty($json["ticker"]["last"]))
+        {
+            Cache::put('huobi_price', $json["ticker"]["last"],5);
+        }
+        $json['last'] = !empty($json["ticker"]["last"]) ? 'CNY ¥' . number_format($json["ticker"]["last"], 2) : Cache::get('huobi_price');
+        return $json;
+    }
+
     private function getBtce()
     {
         $url = config('app.exchanges_uri')['btce'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'BTC-e';
-        $json['last'] = !empty($json["ticker"]["last"]) ? 'USD $' . number_format($json["ticker"]["last"], 2) : "Exchange unreachable :(";
+        if(!empty($json["ticker"]["last"]))
+        {
+            Cache::put('btce_price',$json["ticker"]["last"], 5);
+        }
+        $json['last'] = !empty($json["ticker"]["last"]) ? 'USD $' . number_format($json["ticker"]["last"], 2) : Cache::get('btce_price');
         return $json;        
     }
 
@@ -219,7 +257,11 @@ class PriceController extends Controller
         $url = config('app.exchanges_uri')['bitfinex'];
         $json = self::getPriceUri($url);
         $json['exchange'] = 'Bitfinex';
-        $json['last_price'] = !empty($json['last_price']) ? 'USD $' . number_format($json['last_price'], 2) : "Exchange unreachable :-(";
+        if(!empty($json['last_price']))
+        {
+            Cache::put('bitfinex_price',$json['last_price'],5);
+        }
+        $json['last_price'] = !empty($json['last_price']) ? 'USD $' . number_format($json['last_price'], 2) : Cache::get('bitfinex_price');
         return $json;
     }
 
