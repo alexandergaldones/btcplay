@@ -42,7 +42,10 @@
    <script src="{{ asset('scripts/app.js') }}" type="text/javascript"></script>
    <script src="{{ asset('scripts/site_custom.js') }}" type="text/javascript"></script>
    <script src="{{ asset('scripts/index.js') }}" type="text/javascript"></script>
-   <script src="{{ asset('scripts/tasks.js') }}" type="text/javascript"></script>        
+   <script src="{{ asset('scripts/tasks.js') }}" type="text/javascript"></script>
+   <script src="{{ asset('plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript" ></script>
+   <script src="{{ asset('plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript" ></script>
+   <script src="{{ asset('scripts/ui-extended-modals.js') }}"></script> 
    <!-- END PAGE LEVEL SCRIPTS -->  
    <script>
       jQuery(document).ready(function() {    
@@ -55,6 +58,7 @@
          //Index.initMiniCharts();
          //Index.initDashboardDaterange();
          //Index.initIntro();
+         UIExtendedModals.init();
          Tasks.initDashboardWidget();
       });
    </script>

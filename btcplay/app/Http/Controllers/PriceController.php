@@ -36,7 +36,7 @@ class PriceController extends Controller
                 array(
                     'prices' => $prices,                    
                     'city'      =>  $details->city,
-                    'region'      =>  $details->region,
+                    'region'      =>  '',//$details->region,
                     'country'   =>  $details->country
                 )
             );
@@ -56,13 +56,14 @@ class PriceController extends Controller
             $top_news_daily =	self::getTopNewsDaily(); 
 	}
         
+        
         return view('home',
             array(
                 'prices' => $prices,
                 'top_news_daily' => $top_news_daily,
                 'headliners'    => $headliners,
                 'city'      =>  $details->city,
-                'region'      =>  $details->region,
+                'region'      =>  '',//$details->region,
                 'country'   =>  $details->country
             )
         );
@@ -226,6 +227,15 @@ class PriceController extends Controller
         {
             Cache::put('huobi_price', $json["ticker"]["last"],5);
         }
+        
+        $json['open'] = number_format( $json['open'] ,2);
+        $json['vol'] = number_format( $json['vol'] ,4);
+        $json['last'] = number_format( $json['last'] ,2);
+        $json['buy'] = number_format( $json['buy'] ,2);
+        $json['sell'] = number_format( $json['sell'] ,2);
+        $json['high'] = number_format( $json['high'] ,2);
+        $json['low'] = number_format( $json['low'] ,2);
+
         $json['last'] = !empty($json["ticker"]["last"]) ? 'CNY ¥' . number_format($json["ticker"]["last"], 2) : Cache::get('huobi_price');
         return $json;
     }
@@ -262,6 +272,8 @@ class PriceController extends Controller
             Cache::put('bitfinex_price',$json['last_price'],5);
         }
         $json['last_price'] = !empty($json['last_price']) ? 'USD $' . number_format($json['last_price'], 2) : Cache::get('bitfinex_price');
+        $json['ask'] = 'USD $' . $json['ask'];
+        $json['bid'] = 'USD $' . $json['bid'];        
         return $json;
     }
 
@@ -283,10 +295,11 @@ class PriceController extends Controller
     private function getCoinsph()
     {
         $url = config('app.exchanges_uri')['coinsph'];
-        $json = self::getPriceUri($url);
-        $price = $json["quote"]['ask'];
+        $json = self::getPriceUri($url);        
         $json['exchange'] = 'Coins.ph';
-        $json['quote']['ask'] = !empty($price) ? $json["quote"]['currency'] .number_format($price, 2) : "Exchange unreachable :-(";
+        $json['quote']['ask'] = !empty($json["quote"]['ask']) ? $json["quote"]['currency'] .' ₱'.number_format($json["quote"]['ask'], 2) : "Exchange unreachable :-(";        
+        $json['quote']['bid'] = !empty($json["quote"]['bid']) ? $json["quote"]['currency'] .' ₱'.number_format($json["quote"]['bid'], 2) : "Exchange unreachable :-(";
+
 
         return $json;
     }

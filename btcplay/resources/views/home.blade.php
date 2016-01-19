@@ -1,6 +1,28 @@
 @extends('master')
 @section('content')
 	<!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+         <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                     <h4 class="modal-title">Modal title</h4>
+                  </div>
+                  <div class="modal-body">
+                     Widget settings form goes here
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn blue">Save changes</button>
+                     <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                  </div>
+               </div>
+               <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+         </div>
+         <!-- /.modal -->
+         <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
      <div class="row">
         <div class="col-md-12">
            <!-- BEGIN PAGE TITLE & BREADCRUMB-->           
@@ -62,7 +84,7 @@
                                 Coins.ph Exchange
                              </div>
                           </div>
-                          <a class="more" data-toggle="modal" href="#wide">
+                          <a class="more" data-toggle="modal" href="#modal_coinsph">
                           View more <i class="m-icon-swapright m-icon-white"></i>
                           </a>                 
                        </div>
@@ -90,7 +112,7 @@
                              <div class="number bitfinex">{{ $prices['bitfinex']['last_price'] }}</div>
                              <div class="desc">Bitfinex</div>
                           </div>
-                          <a class="more" href="#">
+                          <a class="more" data-toggle="modal" href="#modal_bitfinex">
                           View more <i class="m-icon-swapright m-icon-white"></i>
                           </a>                 
                        </div>
@@ -104,7 +126,7 @@
                              <div class="number huobi">{{ $prices['huobi']['last'] }}</div>
                              <div class="desc">{{ $prices['huobi']['exchange'] }}</div>
                           </div>
-                          <a class="more" href="#">
+                          <a class="more" data-toggle="modal" href="#modal_huobi">
                           View more <i class="m-icon-swapright m-icon-white"></i>
                           </a>                 
                        </div>
@@ -167,6 +189,11 @@
                     </div>
                   </div>
                   <!-- END DASHBOARD STATS -->
+                    @include('modal_exchanges.coinsph')                        
+                    @include('modal_exchanges.bitfinex')
+                    @include('modal_exchanges.huobi')
+                   <!-- END EXCHANGE MODALS -->
+
               </div>
         </div>
         <div class="clearfix"></div>
