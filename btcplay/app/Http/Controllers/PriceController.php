@@ -27,17 +27,17 @@ class PriceController extends Controller
             $prices = self::getBTCPrices();
         }
 
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+        //$ip = $_SERVER['REMOTE_ADDR'];
+        //$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 
         if( Request::ajax() )
         {
             return response()->json(
                 array(
                     'prices' => $prices,                    
-                    'city'      =>  $details->city,
+                    'city'      =>  '',//$details->city,
                     'region'      =>  '',//$details->region,
-                    'country'   =>  $details->country
+                    'country'   =>  '',//$details->country
                 )
             );
         }
@@ -62,9 +62,9 @@ class PriceController extends Controller
                 'prices' => $prices,
                 'top_news_daily' => $top_news_daily,
                 'headliners'    => $headliners,
-                'city'      =>  $details->city,
+                'city'      =>  '',//$details->city,
                 'region'      =>  '',//$details->region,
-                'country'   =>  $details->country
+                'country'   =>  ''//$details->country
             )
         );
         
